@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Cats A/B Testing — Chi Dang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F0FFFE;
+  --bg2:#E0FAF8;
+  --bg3:#D4F5F0;
+  --ink:#1A3A3A;
+  --ink2:#5A5040;
+  --ink3:#9A9080;
+  --rust:#2A8A8A;
+  --rust-pale:#E0FAF8;
+  --sage:#00C4B8;
+  --border:#A8E8E0;
+  --display:'Playfair Display',Georgia,serif;
+  --body:'EB Garamond',Georgia,serif;
+  --sans:'Raleway',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;font-size:15px;line-height:1.6;}
+.inner{max-width:860px;margin:0 auto;padding:0 2rem;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:60px;display:flex;align-items:center;
+  background:rgba(240,255,254,0.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:0 2rem;
+}
+.nav-inner{max-width:860px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.back-link{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink2);text-decoration:none;transition:color .2s;
+}
+.back-link:hover{color:var(--rust);}
+.back-link::before{content:'←';font-size:1rem;}
+.logo{font-family:var(--display);font-style:italic;font-size:1.2rem;font-weight:400;color:var(--ink);text-decoration:none;}
+
+/* HERO */
+.proj-hero{
+  margin-top:60px;background:var(--bg);
+  padding:5rem 0 3rem;border-bottom:1px solid var(--border);
+}
+.proj-breadcrumb{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;
+}
+.proj-breadcrumb::before{content:'';width:24px;height:1px;background:var(--rust);}
+.proj-title{
+  font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:700;line-height:1.05;letter-spacing:-0.02em;
+  color:var(--ink);margin-bottom:1.2rem;
+}
+.proj-subtitle{
+  font-family:var(--body);font-size:1.2rem;font-style:italic;
+  color:var(--ink2);line-height:1.8;max-width:680px;margin-bottom:2.5rem;
+}
+.proj-meta-row{
+  display:flex;flex-wrap:wrap;gap:2rem;align-items:center;
+  padding-top:2rem;border-top:1px solid var(--border);
+}
+.meta-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.25rem;}
+.meta-val{font-size:0.88rem;font-weight:500;color:var(--ink);}
+.tag-row{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.ptag{
+  font-size:0.68rem;font-weight:600;padding:0.25rem 0.7rem;
+  border-radius:2px;border:1px solid var(--border);
+  color:var(--ink2);letter-spacing:0.04em;text-transform:uppercase;
+}
+
+/* SECTIONS */
+.sec{padding:4rem 0;}
+.sec-alt{background:#E0FAF8;}
+.sh{
+  display:flex;align-items:baseline;gap:1rem;
+  border-bottom:1px solid var(--border);
+  padding-bottom:0.75rem;margin-bottom:2rem;
+}
+.sn{font-family:var(--display);font-style:italic;font-size:0.95rem;color:var(--rust);font-weight:400;}
+.st{font-family:var(--display);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;}
+.body-p{font-family:var(--body);font-size:1.1rem;color:#2A5A58;letter-spacing:0.03em;line-height:1.95;margin-bottom:1.2rem;font-weight:400;}
+
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;}
+.stat{
+  background:var(--bg);border:1px solid var(--border);border-radius:3px;
+  padding:1.5rem;position:relative;overflow:hidden;
+}
+.stat::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#2A8A8A;}
+.stat-num{
+  font-family:var(--display);font-size:2rem;font-weight:700;
+  color:#2A8A8A;letter-spacing:-0.03em;line-height:1;margin-bottom:0.4rem;
+}
+.stat-desc{font-size:0.78rem;font-weight:500;color:var(--ink2);letter-spacing:0.03em;}
+
+/* A/B COMPARISON TABLE */
+.ab-table{width:100%;border-collapse:collapse;margin-bottom:2rem;}
+.ab-table th{
+  font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink3);padding:0.6rem 1rem;text-align:left;
+  border-bottom:2px solid var(--border);
+}
+.ab-table td{
+  font-family:var(--body);font-size:1rem;color:var(--ink2);
+  padding:0.85rem 1rem;border-bottom:1px solid var(--border);line-height:1.5;
+}
+.ab-table tr:last-child td{border-bottom:none;}
+.ab-table tr:hover td{background:rgba(0,196,184,0.04);}
+.ab-table .winner{color:#007A7A;font-weight:700;}
+.ab-table .loser{color:#9A9080;}
+.badge{display:inline-block;font-size:0.65rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:2px;letter-spacing:0.06em;text-transform:uppercase;}
+.badge.sig{background:#E0FAF8;color:#007A7A;}
+.badge.ns{background:#F5F0E8;color:#9A8060;}
+
+/* VERDICT BOX */
+.verdict{
+  background:#2A8A8A;border-radius:3px;padding:2rem 2.5rem;
+  display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2rem;
+}
+.verdict-icon{font-size:2rem;line-height:1;flex-shrink:0;}
+.verdict-h{font-family:var(--display);font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.verdict-b{font-family:var(--body);font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.8;}
+
+/* INSIGHT GRID */
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem;}
+.insight-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:3px;
+  padding:1.5rem;
+}
+.insight-label{font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);margin-bottom:0.5rem;}
+.insight-text{font-family:var(--body);font-size:1rem;color:#2A5A58;line-height:1.8;}
+
+/* CTA */
+.cta-bar{
+  background:#2A8A8A;padding:3rem 2rem;border-radius:3px;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;
+}
+.cta-h{font-family:var(--display);font-style:italic;font-size:1.4rem;font-weight:400;color:#fff;margin-bottom:0.3rem;}
+.cta-sub{font-family:var(--body);font-size:0.95rem;color:rgba(255,255,255,0.75);}
+.cta-actions{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn-white{
+  background:#fff;color:#2A8A8A;padding:0.75rem 1.8rem;
+  border-radius:2px;font-size:0.78rem;font-weight:700;letter-spacing:0.07em;
+  text-decoration:none;text-transform:uppercase;transition:background .2s;white-space:nowrap;
+}
+.btn-white:hover{background:#E0FAF8;}
+.btn-outline-white{
+  background:transparent;color:#fff;padding:0.75rem 1.8rem;
+  border-radius:2px;border:1px solid rgba(255,255,255,0.5);
+  font-size:0.78rem;font-weight:600;letter-spacing:0.07em;
+  text-decoration:none;text-transform:uppercase;transition:border-color .2s,background .2s;white-space:nowrap;
+}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+
+/* NEXT PROJECT */
+.next-bar{
+  border-top:1px solid var(--border);padding:2.5rem 0;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+}
+.next-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.4rem;}
+.next-name{font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:block;transition:color .2s;}
+.next-name:hover{color:var(--rust);}
+
+footer{background:#2A8A8A;padding:2rem 0;display:flex;align-items:center;justify-content:center;}
+.f-motto{font-family:var(--body);font-style:italic;font-size:0.95rem;color:#B8EEE8;}
+
+@media(max-width:700px){
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .insight-grid{grid-template-columns:1fr;}
+  .cta-bar{flex-direction:column;align-items:flex-start;}
+  .next-bar{flex-direction:column;align-items:flex-start;}
+  .verdict{flex-direction:column;gap:0.75rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="back-link">Back to Portfolio</a>
+    <a href="index.html" class="logo">Chi Dang</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="proj-hero">
+  <div class="inner">
+    <div class="proj-breadcrumb">Case Study</div>
+    <h1 class="proj-title">Cookie Cats<br>A/B Testing</h1>
+    <p class="proj-subtitle">Ran a full statistical analysis on a <strong>90,000-user mobile game experiment</strong> — testing whether moving the progression gate from level 30 to level 40 improves player retention, using chi-square tests, Mann-Whitney U, and bootstrap confidence intervals.</p>
+    <div class="proj-meta-row">
+      <div class="meta-item">
+        <div class="meta-label">Domain</div>
+        <div class="meta-val">Mobile Gaming · Behavioral Analytics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Methods</div>
+        <div class="meta-val">Chi-Square · Bootstrap · Mann-Whitney U</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tools</div>
+        <div class="tag-row">
+          <span class="ptag">Python</span>
+          <span class="ptag">Pandas</span>
+          <span class="ptag">SciPy</span>
+          <span class="ptag">Matplotlib</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY NUMBERS -->
+<section class="sec">
+  <div class="inner">
+    <div class="sh"><span class="sn">01</span><h2 class="st">Experiment at a Glance</h2></div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">90,189</div>
+        <div class="stat-desc">Total users — well-balanced random assignment</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">−4.3%</div>
+        <div class="stat-desc">Relative drop in 7-day retention for Gate 40</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">p = 0.0016</div>
+        <div class="stat-desc">7-day retention result — statistically significant</div>
+      </div>
+    </div>
+    <p class="body-p">Cookie Cats is a mobile puzzle game where players hit a timed gate at a set level — forcing a wait before they can continue. The experiment tested whether shifting the gate from <strong>level 30</strong> (control) to <strong>level 40</strong> (treatment) would improve 1-day retention, 7-day retention, and overall game rounds played.</p>
+  </div>
+</section>
+
+<!-- CHARTS -->
+<section class="sec sec-alt">
+  <div class="inner">
+    <div class="sh"><span class="sn">02</span><h2 class="st">Analysis Dashboard</h2></div>
+    <img src="Cookie_cat_ABTesting/output/dashboard.png" alt="A/B Test Analysis Dashboard" style="width:100%;border:1px solid var(--border);border-radius:3px;display:block;margin-bottom:1.25rem;">
+    <img src="Cookie_cat_ABTesting/output/retention_funnel.png" alt="Retention Funnel Comparison" style="width:100%;border:1px solid var(--border);border-radius:3px;display:block;">
+  </div>
+</section>
+
+<!-- RESULTS TABLE -->
+<section class="sec">
+  <div class="inner">
+    <div class="sh"><span class="sn">03</span><h2 class="st">Results</h2></div>
+    <table class="ab-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Gate 30 (Control)</th>
+          <th>Gate 40 (Treatment)</th>
+          <th>Lift</th>
+          <th>Significance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1-Day Retention</td>
+          <td class="winner">44.82%</td>
+          <td class="loser">44.23%</td>
+          <td>−1.32%</td>
+          <td><span class="badge ns">Not Sig. p=0.075</span></td>
+        </tr>
+        <tr>
+          <td><strong>7-Day Retention</strong></td>
+          <td class="winner"><strong>19.02%</strong></td>
+          <td class="loser">18.20%</td>
+          <td><strong>−4.31%</strong></td>
+          <td><span class="badge sig">Significant p=0.0016</span></td>
+        </tr>
+        <tr>
+          <td>Avg Game Rounds</td>
+          <td>52.5</td>
+          <td>51.3</td>
+          <td>—</td>
+          <td><span class="badge ns">Not Sig.</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="body-p">Bootstrap analysis (5,000 iterations) confirmed the 7-day result: the 95% confidence interval for the difference [−1.30 pp, −0.32 pp] excludes zero, ruling out chance. Game rounds were similar across groups, indicating the gate position does not meaningfully change how much players engage before hitting the gate.</p>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="sec sec-alt">
+  <div class="inner">
+    <div class="sh"><span class="sn">04</span><h2 class="st">Key Insights</h2></div>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-label">Hedonic Adaptation</div>
+        <div class="insight-text">Players who reach the gate earlier (level 30) feel a stronger urge to return after the wait. Those who progress further (level 40) may feel more satisfied — and less motivated to come back.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">7-Day Retention Matters Most</div>
+        <div class="insight-text">Seven-day retention is the strongest predictor of long-term monetisation. A −4.3% relative drop at Gate 40 directly threatens revenue, making this the decisive metric.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">1-Day Effect is Negligible</div>
+        <div class="insight-text">While Gate 30 edges Gate 40 on day-1 retention, the difference is not statistically significant (p=0.075) and Cohen's h ≈ −0.012 shows essentially no practical effect.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Engagement is Unaffected</div>
+        <div class="insight-text">Median rounds played (17 vs 16) are nearly identical across groups. The gate position changes retention behaviour but not in-session engagement volume.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section class="sec">
+  <div class="inner">
+    <div class="sh"><span class="sn">05</span><h2 class="st">Recommendation</h2></div>
+    <div class="verdict">
+      <div class="verdict-icon">✅</div>
+      <div>
+        <div class="verdict-h">Keep Gate 30 — do not ship Gate 40</div>
+        <div class="verdict-b">Gate 30 wins on the metric that matters most: 7-day retention, with statistical significance confirmed by both chi-square (p=0.0016) and bootstrap CI. Moving the gate later improves nothing and meaningfully hurts long-term player return rates.</div>
+      </div>
+    </div>
+    <p class="body-p">Next steps: segment results by platform (iOS / Android), analyse in-app purchase data alongside retention, and consider testing Gate 50 vs Gate 30 to further understand the psychological sweet spot.</p>
+  </div>
+</section>
+
+<!-- GITHUB -->
+<section class="sec sec-alt">
+  <div class="inner">
+    <div class="cta-bar">
+      <div class="cta-text">
+        <div class="cta-h">Explore the full analysis</div>
+        <div class="cta-sub">Python script, dataset, and output charts — all on GitHub.</div>
+      </div>
+      <div class="cta-actions">
+        <a href="https://github.com/ChiDang/Cookie_cat_ABTesting" target="_blank" class="btn-white">View on GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PROJECT -->
+<section class="sec">
+  <div class="inner">
+    <div class="next-bar">
+      <div>
+        <div class="next-label">Next Project</div>
+        <a href="pizza-hut.html" class="next-name">Pizza Hut Sales Analysis →</a>
+      </div>
+      <a href="index.html#projects" class="back-link" style="font-size:0.75rem;">All Projects</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="f-motto">Curiosity · Humanity · Integrity</span>
+</footer>
+
+</body>
+</html>

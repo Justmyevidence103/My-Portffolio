@@ -121,6 +121,7 @@ nav{
   background:none;
   display:flex;align-items:stretch;justify-content:center;
   overflow:hidden;border-radius:8px;
+  z-index:2;
 }
 .hero-r-bg{display:none;}
 /* big decorative letter */
@@ -138,39 +139,6 @@ nav{
   width:100%;height:100%;
   object-fit:cover;object-position:center top;
   display:block;border-radius:0;
-}
-.hero-badge{
-  background:rgba(255,255,255,0.93);
-  border:1px solid rgba(42,138,138,0.25);border-radius:100px;
-  padding:0.45rem 1.2rem;z-index:10;
-  box-shadow:0 4px 20px rgba(28,22,18,0.1);
-  white-space:nowrap;
-}
-.hero-badge b{
-  display:block;font-family:var(--display);font-size:0.9rem;
-  font-weight:600;color:#2A8A8A;line-height:1;
-}
-/* orbit system */
-.orbit-arm{
-  position:absolute;top:50%;left:50%;
-  width:0;height:0;
-}
-.orbit-arm .hero-badge{
-  position:absolute;
-}
-#arm1{animation:orbitSpin 10s linear infinite 0s;}
-#arm2{animation:orbitSpin 10s linear infinite -3.33s;}
-#arm3{animation:orbitSpin 10s linear infinite -6.66s;}
-#arm1 .hero-badge{animation:orbitCounter 10s linear infinite 0s;}
-#arm2 .hero-badge{animation:orbitCounter 10s linear infinite -3.33s;}
-#arm3 .hero-badge{animation:orbitCounter 10s linear infinite -6.66s;}
-@keyframes orbitSpin{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
-}
-@keyframes orbitCounter{
-  from{transform:translateX(170px) translateY(-50%) rotate(0deg);}
-  to{transform:translateX(170px) translateY(-50%) rotate(-360deg);}
 }
 
 
@@ -198,7 +166,7 @@ nav{
 .sec-dark{background:#E0FAF8;color:#1A3A38;}
 
 .sh{
-  display:flex;align-items:baseline;gap:1rem;
+  display:flex;align-items:baseline;justify-content:center;gap:1rem;
   border-bottom:1px solid var(--border);
   padding-bottom:0.9rem;margin-bottom:2.5rem;
 }
@@ -209,22 +177,25 @@ nav{
 }
 .sec-dark .sn{color:#2A8A8A;}
 .st{
-  font-family:var(--display);font-size:clamp(1.25rem,2vw,1.65rem);
+  font-family:var(--display);font-size:clamp(1.6rem,2.8vw,2.2rem);
   font-weight:700;color:var(--ink);letter-spacing:-0.02em;
 }
 .sec-dark .st{color:#1A3A38;}
 
 /* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;align-items:start;}
+.about-grid{display:flex;flex-direction:column;gap:2.5rem;}
+.sk-wrap{display:flex;flex-wrap:wrap;gap:2.5rem;}
 .about-p{font-family:var(--body);font-size:1.12rem;color:#2A5A58;letter-spacing:0.03em;line-height:1.95;margin-bottom:1.4rem;font-weight:400;}
+.about-p li{list-style:none;padding-left:1.5rem;position:relative;}
+.about-p li::before{content:"✦";position:absolute;left:0;color:#2A5A58;font-size:0.75rem;top:0.35em;}
 .about-q{
   font-family:var(--display);font-style:italic;font-size:1.55rem;
-  color:var(--ink);font-weight:400;line-height:1.35;
+  color:#FF6B00;font-weight:400;line-height:1.35;
   border-left:3px solid #2A8A8A;padding-left:1.5rem;
   margin-top:2.5rem;
 }
 .sk-wrap{}
-.sk-g{margin-bottom:2rem;}
+.sk-g{min-width:160px;}
 .sk-label{
   font-size:0.68rem;font-weight:600;letter-spacing:0.12em;
   text-transform:uppercase;color:var(--ink3);margin-bottom:0.75rem;
@@ -241,7 +212,7 @@ nav{
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
 .proj-card{
   background:var(--bg);padding:0;overflow:hidden;
-  transition:background .25s;cursor:default;
+  transition:background .25s;cursor:pointer;
 }
 .proj-card:hover{background:var(--bg2);}
 
@@ -414,8 +385,8 @@ nav{
 /* ── FOOTER ── */
 footer{
   background:#2A8A8A;
-  padding:2rem 4rem;
-  display:flex;align-items:center;justify-content:space-between;
+  padding:2rem 0;
+  display:flex;align-items:center;justify-content:center;
 }
 .f-brand{font-family:var(--display);font-style:italic;font-size:1.5rem;font-weight:400;color:var(--bg);}
 .f-motto{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:#B8EEE8;}
@@ -429,7 +400,9 @@ footer{
   .orbit-scene{width:70vw;height:70vw;max-width:300px;max-height:300px;}
   .hero-r{height:100%;min-height:unset;}
   .sec{padding:4rem 1.5rem;}
-  .about-grid,.contact-grid,.edu-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .contact-grid,.edu-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .about-grid{gap:1.5rem;}
+  .sk-wrap{gap:1.5rem;}
   .proj-grid{grid-template-columns:1fr;gap:1px;}
   .hob-grid{grid-template-columns:1fr;}
   .exp-row{grid-template-columns:1fr;gap:0.5rem;padding:1.75rem 0;}
@@ -456,9 +429,8 @@ footer{
 <div class="hero">
   <div style="max-width:1100px;width:100%;display:flex;align-items:center;gap:4rem;padding:0 3rem;">
 <div class="hero-l">
-    <span class="hero-tag">Data Analyst · Hanoi</span>
-    <h1 class="hero-h">CHI DANG<span>— turning data into meaning.</span></h1>
-    <p class="hero-role">Data Analyst Intern</p>
+    <h1 class="hero-h">Hi, I'm Chi Dang<span>
+    <p class="hero-role">Data Analyst </p>— turning data into meaning.</span></h1>
     <p class="hero-desc">Fascinated by the way people think, decide, and interact. I sit at the intersection of economics, behavior, and data — building models that reveal the human story hidden in numbers.</p>
     <p class="hero-motto">Creative · Imaginative · Loving others</p>
     <div class="hero-actions">
@@ -469,11 +441,8 @@ footer{
 
   <div class="orbit-scene">
     <div class="hero-r">
-      <img class="hero-img" src="Me2.png" alt="Chi Dang">
+      <img class="hero-img" src="Image\Me2.png" alt="Chi Dang">
     </div>
-    <div class="orbit-arm" id="arm1"><div class="hero-badge"><b>Curiosity</b></div></div>
-    <div class="orbit-arm" id="arm2"><div class="hero-badge"><b>Humanity</b></div></div>
-    <div class="orbit-arm" id="arm3"><div class="hero-badge"><b>Integrity</b></div></div>
   </div>
 </div>
 
@@ -481,13 +450,18 @@ footer{
 
 <!-- ABOUT -->
 <section class="sec" id="about"><div class="inner">
-  <div class="sh"><span class="sn">01 —</span><h2 class="st">About Me</h2></div>
+  <div class="sh"><h2 class="st">About Me</h2></div>
   <div class="about-grid">
     <div>
-      <p class="about-p">I'm a Business Analytics student at National Economics University, fascinated by the way people think, decide, and interact. At the intersection of data, economics, and human behavior, I build models that turn complexity into clarity.</p>
-      <p class="about-p">My long-term goal is to bring this analytical mindset into the games industry — making games more effective and more deeply engaging for real people.</p>
-      <p class="about-p">I believe data is only as meaningful as the human story behind it.</p>
-      <blockquote class="about-q">"Sonat Studio,<br> I am waiting for your call!!!!"</blockquote>
+      <p class="about-p">Hi there. To talk about myself, these are values that I do pursue:</p>
+      <ul class="about-p" style="padding-left:0;">
+        <li><strong>C:</strong> Curiosity to explore what I can do and what I can contribute.</li>
+        <li><strong>H:</strong> Humble as "We don't know what we don't know".</li>
+        <li><strong>I:</strong> Integrity to be a trustful and worthy daughter, sister, friend, labor, and citizen.</li>
+      </ul>
+      <p class="about-p">After finishing my bachelor's degree, I am in my first steps of exploring my career prospects by taking advantage of knowledge across various disciplines that I've learnt from my major to leverage and benefit entrepreneur activities.</p>
+      <p class="about-p">In the next chapter of my life, inspired by my close friend, a game developer, I am genuinely interested in how a game work, the economy, and the operating system behind a game. I was also amazed by the fast growth of this industry in Viet Nam. So I hope that I have chance to contribute to this emerging field, and bring my understanding across various domains to help business gain practical and efficient insights.</p>
+      <blockquote class="about-q">"Sonat Studio! Would you mind to give me a call?"</blockquote>
     </div>
     <div class="sk-wrap">
       <div class="sk-g">
@@ -495,7 +469,7 @@ footer{
         <div class="sks">
           <span class="sk">SQL</span><span class="sk">Python</span>
           <span class="sk">Power BI</span><span class="sk">Machine Learning</span>
-          <span class="sk">A/B Testing</span><span class="sk">Statistics</span>
+          <span class="sk">Statistics</span>
         </div>
       </div>
       <div class="sk-g">
@@ -521,16 +495,16 @@ footer{
 <div class="quote-sec"><div class="inner" style="text-align:center;">
   <div class="quote-deco">"</div>
   <p class="quote-q">"You must sweat every small stuff."</p>
-  <span class="quote-by">— Steven Bartlett</span>
+  <span class="quote-by">— Steven Bartlett, The Diary of a CEO —</span>
 </div></div>
 
 <!-- EDUCATION -->
 <section class="sec" id="education"><div class="inner">
-  <div class="sh"><span class="sn">02 —</span><h2 class="st">Education &amp; Achievements</h2></div>
+  <div class="sh"><h2 class="st">Education &amp; Achievements</h2></div>
   <div class="edu-layout">
     <div class="edu-card">
-      <div class="edu-img-slot" style="height:130px;background:var(--bg2);border-radius:4px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--border);overflow:hidden;">
-        <span style="font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;">Add image here</span>
+      <div class="edu-img-slot" style="margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;">
+        <img src="Image/Neu.png" alt="National Economics University" style="max-height:120px;width:auto;max-width:100%;object-fit:contain;">
       </div>
       <div class="edu-yr">2022 — Present</div>
       <h3 class="edu-school">National Economics University</h3>
@@ -541,15 +515,15 @@ footer{
       </ul>
     </div>
     <div class="edu-card">
-      <div class="edu-img-slot" style="height:130px;background:var(--bg2);border-radius:4px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--border);overflow:hidden;">
-        <span style="font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;">Add image here</span>
+      <div class="edu-img-slot" style="margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;">
+        <img src="Image/CTB.png" alt="Thai Binh Specialized High School" style="max-height:120px;width:auto;max-width:100%;object-fit:contain;">
       </div>
       <div class="edu-yr">2019 — 2022</div>
       <h3 class="edu-school">Thai Binh Specialized High School</h3>
-      <p class="edu-deg">Specialized Mathematics</p>
+      <p class="edu-deg">Mathematics</p>
       <ul class="edu-pts">
         <li>Highest Specialized Maths Grade in Entrance Exam</li>
-        <li>Member of Maths Team — Vietnam Mathematical Olympiad</li>
+        <li>Member of Thai Binh's Maths Team attending Vietnam Mathematical Olympiad</li>
       </ul>
     </div>
   </div>
@@ -561,11 +535,56 @@ footer{
 </section>
 <!-- PROJECTS -->
 <section class="sec sec-alt" id="projects"><div class="inner">
-  <div class="sh"><span class="sn">03 —</span><h2 class="st">Recent Projects</h2></div>
+  <div class="sh"><h2 class="st">Recent Projects</h2></div>
   <div class="proj-grid">
 
-    <!-- 1: Pizza Hut -->
-    <div class="proj-card">
+    <!-- 1: A/B Testing -->
+    <a href="cookie-cat.html" class="proj-card" style="text-decoration:none;display:block;">
+      <div class="proj-ill" style="background:#F5F0FB;">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- axis -->
+          <line x1="55" y1="175" x2="455" y2="175" stroke="#DDD5CA" stroke-width="1"/>
+          <!-- Group A distribution -->
+          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70 L270,175Z" fill="#B5451B" opacity="0.15"/>
+          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70" fill="none" stroke="#B5451B" stroke-width="2.5"/>
+          <!-- Group B distribution (shifted right) -->
+          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175Z" fill="#3D6B5E" opacity="0.12"/>
+          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175" fill="none" stroke="#3D6B5E" stroke-width="2.5"/>
+          <!-- vertical means -->
+          <line x1="210" y1="48" x2="210" y2="175" stroke="#B5451B" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+          <line x1="320" y1="44" x2="320" y2="175" stroke="#3D6B5E" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+          <!-- labels -->
+          <rect x="60" y="28" width="32" height="18" rx="9" fill="#B5451B" opacity="0.15"/>
+          <text x="76" y="41" font-family="Instrument Sans,sans-serif" font-size="10" fill="#B5451B" font-weight="700" text-anchor="middle">A</text>
+          <rect x="328" y="18" width="32" height="18" rx="9" fill="#3D6B5E" opacity="0.15"/>
+          <text x="344" y="31" font-family="Instrument Sans,sans-serif" font-size="10" fill="#3D6B5E" font-weight="700" text-anchor="middle">B</text>
+          <text x="205" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#B5451B" text-anchor="middle" font-weight="600">Gate 30</text>
+          <text x="325" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#3D6B5E" text-anchor="middle" font-weight="600">Gate 40</text>
+          <!-- CI bracket -->
+          <line x1="175" y1="208" x2="375" y2="208" stroke="#9A8B82" stroke-width="1.5"/>
+          <line x1="175" y1="203" x2="175" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
+          <line x1="375" y1="203" x2="375" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
+          <text x="275" y="218" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">95% CONFIDENCE INTERVAL</text>
+          <!-- n label -->
+          <text x="400" y="42" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" font-weight="500">n = 90,189</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-date">May 2026</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <h3 class="proj-name">A/B Testing — Cookie Cat</h3>
+        <p class="proj-desc">Analyzed 90,189 users to test how gate placement (level 30 vs 40) affects retention in a real mobile game. Applied Chi-Square, Mann-Whitney U, and Bootstrap Resampling with 5,000 iterations at 95% CI.</p>
+        <div class="proj-tags">
+          <span class="ptag">Python</span><span class="ptag">A/B Testing</span>
+          <span class="ptag">Bootstrap</span><span class="ptag">Statistics</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2: Pizza Hut -->
+    <a href="pizza-hut.html" class="proj-card" style="text-decoration:none;display:block;">
       <div class="proj-ill" style="background:#FFF5EE;">
         <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <!-- big pie -->
@@ -612,10 +631,10 @@ footer{
           <span class="ptag">RFM Model</span><span class="ptag">Customer Analytics</span>
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- 2: Healthcare ML -->
-    <div class="proj-card">
+    <!-- 3: Healthcare ML -->
+    <a href="ml-predict-cost.html" class="proj-card" style="text-decoration:none;display:block;">
       <div class="proj-ill" style="background:#EDF4F2;">
         <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <!-- axes -->
@@ -663,104 +682,67 @@ footer{
           <span class="ptag">Random Forest</span><span class="ptag">Feature Engineering</span>
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- 3: A/B Testing -->
-    <div class="proj-card">
-      <div class="proj-ill" style="background:#F5F0FB;">
+    <!-- 4: Spreadsheet – Project Management -->
+    <a href="spreadsheet-project-management.html" class="proj-card" style="text-decoration:none;display:block;">
+      <div class="proj-ill" style="background:#EAF4F0;">
         <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <!-- axis -->
-          <line x1="55" y1="175" x2="455" y2="175" stroke="#DDD5CA" stroke-width="1"/>
-          <!-- Group A distribution -->
-          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70 L270,175Z" fill="#B5451B" opacity="0.15"/>
-          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70" fill="none" stroke="#B5451B" stroke-width="2.5"/>
-          <!-- Group B distribution (shifted right) -->
-          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175Z" fill="#3D6B5E" opacity="0.12"/>
-          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175" fill="none" stroke="#3D6B5E" stroke-width="2.5"/>
-          <!-- vertical means -->
-          <line x1="210" y1="48" x2="210" y2="175" stroke="#B5451B" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
-          <line x1="320" y1="44" x2="320" y2="175" stroke="#3D6B5E" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
-          <!-- labels -->
-          <rect x="60" y="28" width="32" height="18" rx="9" fill="#B5451B" opacity="0.15"/>
-          <text x="76" y="41" font-family="Instrument Sans,sans-serif" font-size="10" fill="#B5451B" font-weight="700" text-anchor="middle">A</text>
-          <rect x="328" y="18" width="32" height="18" rx="9" fill="#3D6B5E" opacity="0.15"/>
-          <text x="344" y="31" font-family="Instrument Sans,sans-serif" font-size="10" fill="#3D6B5E" font-weight="700" text-anchor="middle">B</text>
-          <text x="205" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#B5451B" text-anchor="middle" font-weight="600">Gate 30</text>
-          <text x="325" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#3D6B5E" text-anchor="middle" font-weight="600">Gate 40</text>
-          <!-- CI bracket -->
-          <line x1="175" y1="208" x2="375" y2="208" stroke="#9A8B82" stroke-width="1.5"/>
-          <line x1="175" y1="203" x2="175" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
-          <line x1="375" y1="203" x2="375" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
-          <text x="275" y="218" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">95% CONFIDENCE INTERVAL</text>
-          <!-- n label -->
-          <text x="400" y="42" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" font-weight="500">n = 90,189</text>
-        </svg>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta">
-          <span class="proj-date">May 2026</span>
-          <span class="proj-status">Completed</span>
-        </div>
-        <h3 class="proj-name">A/B Testing — Cookie Cat</h3>
-        <p class="proj-desc">Analyzed 90,189 users to test how gate placement (level 30 vs 40) affects retention in a real mobile game. Applied Chi-Square, Mann-Whitney U, and Bootstrap Resampling with 5,000 iterations at 95% CI.</p>
-        <div class="proj-tags">
-          <span class="ptag">Python</span><span class="ptag">A/B Testing</span>
-          <span class="ptag">Bootstrap</span><span class="ptag">Statistics</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4: Spreadsheet WIP -->
-    <div class="proj-card" style="background:var(--rust-pale);">
-      <div class="proj-ill" style="background:#F5E8E2;">
-        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <!-- decision tree -->
-          <!-- root -->
-          <rect x="216" y="22" width="68" height="32" rx="4" fill="#B5451B" opacity="0.2" stroke="#B5451B" stroke-width="1.5"/>
-          <text x="250" y="43" font-family="Playfair Display,serif" font-size="13" fill="#B5451B" text-anchor="middle" font-weight="700" font-style="italic">Decide</text>
-          <!-- branches from root -->
-          <line x1="230" y1="54" x2="150" y2="94" stroke="#B5451B" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
-          <line x1="270" y1="54" x2="350" y2="94" stroke="#B5451B" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
-          <!-- left node -->
-          <rect x="110" y="94" width="80" height="28" rx="4" fill="#F0D5C4" stroke="#C4622D" stroke-width="1"/>
-          <text x="150" y="113" font-family="Instrument Sans,sans-serif" font-size="10" fill="#A04E22" text-anchor="middle" font-weight="600">Option A</text>
-          <!-- right node -->
-          <rect x="310" y="94" width="80" height="28" rx="4" fill="#F0D5C4" stroke="#C4622D" stroke-width="1"/>
-          <text x="350" y="113" font-family="Instrument Sans,sans-serif" font-size="10" fill="#A04E22" text-anchor="middle" font-weight="600">Option B</text>
-          <!-- sub-branches -->
-          <line x1="138" y1="122" x2="100" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <line x1="162" y1="122" x2="198" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <line x1="330" y1="122" x2="298" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <line x1="368" y1="122" x2="402" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <!-- leaf nodes -->
-          <circle cx="100" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
-          <circle cx="198" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
-          <circle cx="298" cy="165" r="14" fill="#C4622D" opacity="0.4"/>
-          <circle cx="402" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
-          <!-- leaf values -->
-          <text x="100" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+12</text>
-          <text x="198" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+8</text>
-          <text x="298" y="169" font-family="Playfair Display,serif" font-size="9" fill="#7A1F00" text-anchor="middle">+21</text>
-          <text x="402" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+5</text>
-          <!-- bottom label -->
-          <text x="250" y="205" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">SCENARIO ANALYSIS · DECISION MODELING</text>
-          <!-- wip badge visual -->
-          <text x="432" y="38" font-family="Instrument Sans,sans-serif" font-size="8" fill="#C8962A" font-weight="700" letter-spacing="1">WIP</text>
+          <!-- axis lines -->
+          <line x1="80" y1="30" x2="80" y2="190" stroke="#A8D8D0" stroke-width="1"/>
+          <line x1="80" y1="190" x2="470" y2="190" stroke="#A8D8D0" stroke-width="1"/>
+          <!-- month labels -->
+          <text x="120" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W1</text>
+          <text x="185" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W2</text>
+          <text x="250" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W3</text>
+          <text x="315" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W4</text>
+          <text x="380" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W5</text>
+          <text x="445" y="205" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A9080" text-anchor="middle" font-weight="600">W6</text>
+          <!-- vertical grid -->
+          <line x1="152" y1="30" x2="152" y2="190" stroke="#D4F0EC" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="217" y1="30" x2="217" y2="190" stroke="#D4F0EC" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="282" y1="30" x2="282" y2="190" stroke="#D4F0EC" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="347" y1="30" x2="347" y2="190" stroke="#D4F0EC" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="412" y1="30" x2="412" y2="190" stroke="#D4F0EC" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <!-- task labels -->
+          <text x="75" y="55" font-family="Instrument Sans,sans-serif" font-size="9" fill="#5A5040" text-anchor="end" font-weight="600">Plan</text>
+          <text x="75" y="85" font-family="Instrument Sans,sans-serif" font-size="9" fill="#5A5040" text-anchor="end" font-weight="600">Design</text>
+          <text x="75" y="115" font-family="Instrument Sans,sans-serif" font-size="9" fill="#5A5040" text-anchor="end" font-weight="600">Build</text>
+          <text x="75" y="145" font-family="Instrument Sans,sans-serif" font-size="9" fill="#5A5040" text-anchor="end" font-weight="600">Test</text>
+          <text x="75" y="175" font-family="Instrument Sans,sans-serif" font-size="9" fill="#5A5040" text-anchor="end" font-weight="600">Launch</text>
+          <!-- Plan bar (W1–W2) — critical -->
+          <rect x="84" y="44" width="130" height="16" rx="3" fill="#2A8A8A" opacity="0.85"/>
+          <rect x="84" y="44" width="130" height="16" rx="3" fill="none" stroke="#1F7A7A" stroke-width="1"/>
+          <!-- Design bar (W1–W3) — critical -->
+          <rect x="84" y="74" width="195" height="16" rx="3" fill="#2A8A8A" opacity="0.85"/>
+          <!-- Build bar (W2–W5) — critical -->
+          <rect x="152" y="104" width="228" height="16" rx="3" fill="#2A8A8A" opacity="0.85"/>
+          <!-- Test bar (W4–W5) — non-critical -->
+          <rect x="314" y="134" width="98" height="16" rx="3" fill="#7ABCB8" opacity="0.6"/>
+          <!-- slack indicator for Test -->
+          <line x1="412" y1="142" x2="445" y2="142" stroke="#7ABCB8" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.7"/>
+          <!-- Launch bar (W5–W6) — critical -->
+          <rect x="379" y="164" width="86" height="16" rx="3" fill="#2A8A8A" opacity="0.85"/>
+          <!-- critical path highlight -->
+          <text x="84" y="25" font-family="Instrument Sans,sans-serif" font-size="7.5" fill="#2A8A8A" font-weight="700" letter-spacing="0.5">CRITICAL PATH</text>
+          <rect x="84" y="18" width="10" height="6" rx="1" fill="#2A8A8A" opacity="0.85"/>
+          <text x="112" y="25" font-family="Instrument Sans,sans-serif" font-size="7.5" fill="#7ABCB8" font-weight="700" letter-spacing="0.5">SLACK</text>
+          <rect x="100" y="18" width="10" height="6" rx="1" fill="#7ABCB8" opacity="0.6"/>
         </svg>
       </div>
       <div class="proj-body">
         <div class="proj-meta">
           <span class="proj-date">2026</span>
-          <span class="proj-status wip">In progress</span>
+          <span class="proj-status">Completed</span>
         </div>
-        <h3 class="proj-name">Spreadsheet Modeling: Decision Making</h3>
-        <p class="proj-desc">Building a structured decision-making model using advanced spreadsheet techniques, scenario analysis, and quantitative frameworks to support data-driven business decisions.</p>
+        <h3 class="proj-name">Project Management</h3>
+        <p class="proj-desc">Designed a macro-enabled Excel workbook for full project lifecycle tracking — Gantt chart, critical path analysis, resource allocation, and earned value management in a single dynamic model.</p>
         <div class="proj-tags">
-          <span class="ptag">Excel</span><span class="ptag">Scenario Analysis</span>
-          <span class="ptag">Decision Science</span>
+          <span class="ptag">Excel (Macro)</span><span class="ptag">Gantt Chart</span>
+          <span class="ptag">Critical Path</span>
         </div>
       </div>
-    </div>
+    </a>
 
   </div>
 </section>
@@ -769,7 +751,7 @@ footer{
 
 <!-- EXPERIENCE (dark section) -->
 <section class="sec sec-dark"><div class="inner">
-  <div class="sh"><span class="sn">04 —</span><h2 class="st">Experience</h2></div>
+  <div class="sh"><h2 class="st">Experience</h2></div>
   <div class="exp-rows">
     <div class="exp-row">
       <div>
@@ -799,7 +781,7 @@ footer{
 
 <!-- HOBBIES -->
 <section class="sec sec-alt"><div class="inner">
-  <div class="sh"><span class="sn">05 —</span><h2 class="st">Beyond the Data</h2></div>
+  <div class="sh"><h2 class="st">Beyond the Data</h2></div>
   <div class="hob-grid">
     <div class="hob">
       <div class="hob-num">01</div>
@@ -848,7 +830,7 @@ footer{
 
 <!-- CONTACT -->
 <section class="sec" id="contact"><div class="inner">
-  <div class="sh"><span class="sn">06 —</span><h2 class="st">Let's Connect</h2></div>
+  <div class="sh"><h2 class="st">Let's Connect</h2></div>
   <div class="contact-grid">
     <div>
       <div class="open-pill">Open to opportunities</div>
@@ -878,9 +860,7 @@ footer{
 </div></section>
 
 <footer><div class="inner" style="display:flex;align-items:center;justify-content:space-between;">
-  <span class="f-brand" style="color:#E8F8F8;">Chi Dang</span>
-  <span class="f-motto">Creative · Imaginative · Loving others</span>
-  <span class="f-copy" style="color:#5A9A98;">© 2026 Chi Dang</span>
+  <span class="f-motto">Curiosity · Humanity · Integrity</span>
 </div></footer>
 
 </body>
