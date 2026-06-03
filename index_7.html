@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi Dang — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F0FFFE;
+  --bg2:#E0FAF8;
+  --bg3:#D4F5F0;
+  --ink:#1A3A3A;
+  --ink2:#5A5040;
+  --ink3:#9A9080;
+  --rust:#2A8A8A;
+  --rust-pale:#E0FAF8;
+  --rust-mid:#3A9A9A;
+  --sage:#00C4B8;
+  --sage-pale:#C8F5EE;
+  --gold:#3DD6B0;
+  --gold-pale:#E0FAF0;
+  --border:#A8E8E0;
+  --display:'Playfair Display',Georgia,serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Raleway',system-ui,sans-serif;
+  --body:'EB Garamond',Georgia,serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;font-size:15px;line-height:1.6;}
+
+/* ── INNER WRAPPER ── */
+.inner{max-width:800px;margin:0 auto;padding:0 2rem;}
+section{padding:4rem 0;}
+.quote-sec{padding:4rem 0;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(249,246,241,0.94);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:var(--display);font-style:italic;font-size:1.35rem;font-weight:400;color:var(--ink);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--ink2);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--rust);}
+.nav-pill{background:#2A8A8A;color:#F0FFFE;padding:0.45rem 1.4rem;border-radius:2px;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;transition:background .2s;}
+.nav-pill:hover{background:#1F7A7A;}
+
+/* ── HERO ── */
+.hero{
+  min-height:calc(100vh - 60px);margin-top:60px;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* left */
+.hero-l{
+  width:100%;max-width:520px;
+  display:flex;flex-direction:column;align-items:flex-start;
+  position:relative;z-index:2;
+  padding:3rem 2rem;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:#2A8A8A;margin-bottom:1.5rem;
+}
+.hero-tag::before{content:'';width:32px;height:1px;background:#2A8A8A;}
+
+.hero-h{
+  font-family:var(--display);
+  font-size:clamp(2.4rem,4.5vw,3.8rem);
+  font-weight:700;line-height:1.05;
+  letter-spacing:-0.01em;color:var(--ink);
+  margin-bottom:1rem;
+}
+.hero-h span{
+  display:block;font-weight:300;font-style:italic;
+  color:#2A8A8A;font-size:0.55em;letter-spacing:0.02em;
+}
+.hero-role{
+  font-family:var(--serif);font-style:italic;font-size:1.4rem;
+  color:var(--ink2);margin-bottom:2rem;font-weight:400;
+}
+.hero-desc{
+  font-family:var(--body);font-size:1.1rem;color:#2A5A58;letter-spacing:0.03em;
+  line-height:1.95;max-width:480px;margin-bottom:2rem;font-weight:400;
+}
+.hero-motto{
+  font-family:var(--display);font-style:italic;font-size:1.05rem;
+  color:var(--sage);margin-bottom:2.5rem;font-weight:400;
+}
+.hero-actions{display:flex;gap:1rem;align-items:center;margin-bottom:2.5rem;}
+.btn-solid{
+  background:#2A8A8A;color:#F0FFFE;padding:0.8rem 2rem;
+  border-radius:2px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;
+  text-decoration:none;text-transform:uppercase;transition:background .2s;
+}
+.btn-solid:hover{background:#1F7A7A;}
+.btn-line{
+  font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink2);text-decoration:none;display:flex;align-items:center;gap:0.4rem;
+  transition:color .2s;
+}
+.btn-line:hover{color:var(--rust);}
+.btn-line::after{content:'→';}
+
+/* right */
+.hero-r{
+  width:300px;height:420px;flex-shrink:0;
+  background:linear-gradient(160deg,#C8F5F0 0%,#A8EAE4 100%);
+  display:flex;align-items:flex-end;justify-content:center;
+  overflow:hidden;border-radius:8px;
+  position:relative;
+}
+.hero-r-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#C8F5F0 0%,#A8EAE4 100%);
+}
+/* big decorative letter */
+.hero-deco{
+  position:absolute;
+  font-family:var(--display);font-weight:900;font-style:italic;
+  font-size:28rem;line-height:1;
+  color:rgba(0,180,180,0.07);
+  top:50%;left:50%;transform:translate(-44%,-52%);
+  pointer-events:none;user-select:none;white-space:nowrap;
+  z-index:0;
+}
+.hero-img{
+  position:relative;z-index:2;
+  width:78%;max-width:300px;
+  object-fit:cover;object-position:center top;
+  height:88%;border-radius:4px 4px 0 0;display:block;
+}
+.hero-badge{
+  position:absolute;background:rgba(255,255,255,0.92);
+  border:1px solid #EAD8C0;border-radius:100px;
+  padding:0.45rem 1.1rem !important;
+  padding:0.8rem 1.1rem;z-index:3;
+  box-shadow:0 8px 32px rgba(28,22,18,0.1);
+}
+.hero-badge b{
+  display:block;font-family:var(--display);font-size:1.05rem;
+  font-weight:600;color:#2A8A8A;line-height:1;
+}
+.hero-badge small{font-size:0.68rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);}
+.b1{top:8%;right:-12%;}
+.b2{bottom:15%;left:-12%;}
+.b3{top:45%;right:-12%;}
+
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:#009999;padding:0.9rem 0;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.marquee-track{
+  display:flex;gap:0;white-space:nowrap;
+  animation:marquee 22s linear infinite;
+}
+.marquee-item{
+  font-family:var(--display);font-style:italic;font-size:1.05rem;
+  color:rgba(255,255,255,0.9);padding:0 2.5rem;
+  flex-shrink:0;
+}
+.marquee-dot{color:rgba(255,255,255,0.4);margin-left:1rem;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── SECTIONS ── */
+.sec{padding:5rem 0;}
+.sec-alt{background:#E0FAF8;}
+.sec-dark{background:#E0FAF8;color:#1A3A38;}
+
+.sh{
+  display:flex;align-items:baseline;gap:1rem;
+  border-bottom:1px solid var(--border);
+  padding-bottom:1rem;margin-bottom:3rem;
+  
+}
+.sec-dark .sh{border-color:var(--border);}
+.sn{
+  font-family:var(--display);font-style:italic;font-size:1rem;
+  color:var(--rust);font-weight:400;
+}
+.sec-dark .sn{color:#2A8A8A;}
+.st{
+  font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;color:var(--ink);letter-spacing:-0.02em;
+}
+.sec-dark .st{color:#1A3A38;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;align-items:start;}
+.about-p{font-family:var(--body);font-size:1.12rem;color:#2A5A58;letter-spacing:0.03em;line-height:1.95;margin-bottom:1.4rem;font-weight:400;}
+.about-q{
+  font-family:var(--display);font-style:italic;font-size:1.55rem;
+  color:var(--ink);font-weight:400;line-height:1.35;
+  border-left:3px solid #2A8A8A;padding-left:1.5rem;
+  margin-top:2.5rem;
+}
+.sk-wrap{}
+.sk-g{margin-bottom:2rem;}
+.sk-label{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:0.75rem;
+}
+.sks{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.sk{
+  font-size:0.75rem;font-weight:600;padding:0.4rem 1rem;
+  border-radius:2px;letter-spacing:0.04em;text-transform:uppercase;
+  background:var(--ink);color:var(--bg);
+}
+.sk.o{background:transparent;color:var(--ink2);border:1px solid var(--border);}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.proj-card{
+  background:var(--bg);padding:0;overflow:hidden;
+  transition:background .25s;cursor:default;
+}
+.proj-card:hover{background:var(--bg2);}
+
+.proj-ill{
+  height:160px;overflow:hidden;position:relative;
+}
+
+.proj-body{padding:1.25rem 1.5rem;}
+.proj-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:0.75rem;
+}
+.proj-date{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--rust);
+}
+.proj-status{
+  font-size:0.65rem;font-weight:600;padding:0.2rem 0.6rem;
+  border-radius:2px;letter-spacing:0.06em;text-transform:uppercase;
+  background:#E0FAF8;color:#2A8A8A;
+}
+.proj-status.wip{background:#E0FAF8;color:#2A8A8A;}
+.proj-name{
+  font-family:var(--display);font-size:1.15rem;font-weight:700;
+  color:var(--ink);margin-bottom:0.5rem;line-height:1.15;letter-spacing:-0.01em;
+}
+.proj-desc{
+  font-family:var(--serif);font-size:0.9rem;color:var(--ink2);
+  line-height:1.8;margin-bottom:1.25rem;font-style:italic;
+}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.ptag{
+  font-size:0.68rem;font-weight:600;padding:0.25rem 0.7rem;
+  border-radius:2px;border:1px solid var(--border);
+  color:var(--ink2);letter-spacing:0.04em;text-transform:uppercase;
+}
+
+/* ── QUOTE ── */
+.quote-sec{
+  background:#D4F5F0;padding:6rem 4rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.quote-deco{
+  position:absolute;top:-3rem;left:3rem;
+  font-family:var(--display);font-size:20rem;font-weight:900;
+  color:rgba(0,180,180,0.06);line-height:1;pointer-events:none;
+}
+.quote-q{
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(1.7rem,3.5vw,2.8rem);
+  color:var(--ink);max-width:750px;line-height:1.3;
+  margin-bottom:1.5rem;position:relative;z-index:1;
+}
+.quote-by{
+  font-size:0.75rem;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--rust);
+}
+
+/* ── EDUCATION ── */
+.edu-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem;}
+.edu-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:3px;padding:2rem;position:relative;overflow:hidden;
+}
+.edu-card::after{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;background:#2A8A8A;
+}
+.edu-yr{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:0.75rem;
+}
+.edu-school{
+  font-family:var(--display);font-size:1.25rem;font-weight:700;
+  color:var(--ink);margin-bottom:0.2rem;letter-spacing:-0.01em;
+}
+.edu-deg{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--ink2);margin-bottom:1rem;}
+.edu-pts{list-style:none;}
+.edu-pts li{
+  font-family:var(--body);font-size:1rem;color:var(--ink2);letter-spacing:0.02em;
+  padding:0.2rem 0 0.2rem 1rem;position:relative;line-height:1.5;
+}
+.edu-pts li::before{content:'✦';position:absolute;left:0;color:var(--rust);font-size:0.5rem;top:0.45rem;}
+
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;}
+.ach{
+  background:var(--rust-pale);border:1px solid rgba(181,69,27,0.15);
+  border-radius:3px;padding:1.4rem;
+}
+.ach b{
+  display:block;font-family:var(--display);font-size:1.1rem;font-weight:700;
+  color:#2A8A8A;margin-bottom:0.25rem;letter-spacing:-0.01em;
+}
+.ach span{font-family:var(--serif);font-size:0.82rem;color:var(--ink2);font-style:italic;}
+
+/* ── EXPERIENCE ── */
+.exp-rows{}
+.exp-row{
+  display:grid;grid-template-columns:1fr 1.5fr;
+  gap:2rem 3rem;
+  padding:2.5rem 0;border-bottom:1px solid var(--border);
+  align-items:start;
+}
+.exp-row:first-child{border-top:1px solid var(--border);}
+.exp-yr{font-size:0.88rem;font-weight:400;color:#8ABABA;padding-top:3px;letter-spacing:0.04em;}
+.exp-co{
+  font-family:var(--display);font-size:1.5rem;font-weight:700;
+  color:#0D3535;margin-bottom:0.25rem;letter-spacing:-0.01em;
+}
+.exp-role{font-family:var(--body);font-style:italic;font-size:1rem;color:#2A8A8A;}
+.exp-ul{list-style:none;}
+.exp-ul li{
+  font-family:var(--serif);font-style:italic;font-size:0.88rem;
+  color:#6A5840;padding:0.2rem 0 0.2rem 1rem;
+  position:relative;line-height:1.65;
+}
+.exp-ul li::before{content:'—';position:absolute;left:0;color:rgba(180,140,80,0.2);}
+
+/* ── HOBBIES ── */
+.hob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.hob{
+  border:1px solid var(--border);border-radius:3px;
+  padding:2.5rem 2rem;background:var(--bg);
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.hob:hover{border-color:#2A8A8A;transform:translateY(-4px);}
+.hob-icon{margin-bottom:1.25rem;opacity:0.85;}
+.hob-n{
+  font-family:var(--display);font-size:1.8rem;font-weight:700;
+  color:var(--ink);margin-bottom:0.65rem;letter-spacing:-0.02em;
+}
+.hob-d{font-family:var(--body);font-size:1.05rem;color:#2A5A58;letter-spacing:0.03em;line-height:1.9;font-weight:400;}
+.hob-num{
+  position:absolute;bottom:-1.5rem;right:-0.5rem;
+  font-family:var(--display);font-style:italic;font-size:7rem;
+  font-weight:900;color:rgba(0,180,180,0.07);line-height:1;pointer-events:none;
+}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-h{
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(2.8rem,6vw,5rem);line-height:1;
+  color:var(--ink);margin-bottom:1.5rem;letter-spacing:-0.02em;
+}
+.contact-sub{font-family:var(--body);font-size:1.12rem;color:#2A5A58;letter-spacing:0.03em;line-height:1.95;margin-bottom:2.5rem;font-weight:400;}
+.open-pill{
+  display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:2rem;
+  background:#E0FAF8;border:1px solid rgba(42,138,138,0.25);
+  border-radius:2px;padding:0.45rem 1rem;
+  font-size:0.72rem;font-weight:600;color:#2A8A8A;letter-spacing:0.06em;text-transform:uppercase;
+}
+.open-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:#2A8A8A;flex-shrink:0;}
+.clinks{}
+.cl{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 0;border-bottom:1px solid var(--border);
+  text-decoration:none;color:var(--ink);transition:color .2s;
+}
+.cl:first-child{border-top:1px solid var(--border);}
+.cl:hover{color:var(--rust);}
+.cl-top{font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.2rem;display:block;}
+.cl-val{font-size:0.9rem;font-weight:500;}
+.cl-arr{font-size:1rem;color:var(--ink3);transition:color .2s;}
+.cl:hover .cl-arr{color:var(--rust);}
+
+/* ── FOOTER ── */
+footer{
+  background:#2A8A8A;
+  padding:2rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.f-brand{font-family:var(--display);font-style:italic;font-size:1.5rem;font-weight:400;color:var(--bg);}
+.f-motto{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:#2A8A8A;}
+.f-copy{font-size:0.72rem;color:#B0A080;letter-spacing:0.04em;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 1.5rem;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-l{padding:3rem 1.5rem;}
+  .hero-r{height:70vw;min-height:280px;}
+  .sec{padding:4rem 1.5rem;}
+  .about-grid,.contact-grid,.edu-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .proj-grid{grid-template-columns:1fr;gap:1px;}
+  .hob-grid{grid-template-columns:1fr;}
+  .exp-row{grid-template-columns:1fr;gap:0.5rem;padding:1.75rem 0;}
+  footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+}
+
+#badge1{animation:drift1 6s ease-in-out infinite;}
+#badge2{animation:drift2 7s ease-in-out infinite 0.8s;}
+#badge3{animation:drift3 5.5s ease-in-out infinite 1.6s;}
+@keyframes drift1{
+  0%{transform:translate(0,0) rotate(-1deg);}
+  30%{transform:translate(4px,-10px) rotate(1deg);}
+  60%{transform:translate(-3px,-5px) rotate(-0.5deg);}
+  100%{transform:translate(0,0) rotate(-1deg);}
+}
+@keyframes drift2{
+  0%{transform:translate(0,0) rotate(1deg);}
+  25%{transform:translate(-5px,-8px) rotate(-1.5deg);}
+  70%{transform:translate(3px,-12px) rotate(1deg);}
+  100%{transform:translate(0,0) rotate(1deg);}
+}
+@keyframes drift3{
+  0%{transform:translate(0,0) rotate(-0.5deg);}
+  40%{transform:translate(3px,-7px) rotate(1.5deg);}
+  75%{transform:translate(-4px,-11px) rotate(-1deg);}
+  100%{transform:translate(0,0) rotate(-0.5deg);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav><div style="max-width:860px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;">
+  <a href="#" class="logo">Chi Dang</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:chidang103204@gmail.com" class="nav-pill">Contact</a>
+</div></nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div style="max-width:940px;width:100%;display:flex;align-items:center;gap:4rem;padding:0 3rem;">
+<div class="hero-l">
+    <span class="hero-tag">Data Analyst · Hanoi</span>
+    <h1 class="hero-h">CHI DANG<span>— turning data into meaning.</span></h1>
+    <p class="hero-role">Data Analyst Intern</p>
+    <p class="hero-desc">Fascinated by the way people think, decide, and interact. I sit at the intersection of economics, behavior, and data — building models that reveal the human story hidden in numbers.</p>
+    <p class="hero-motto">Creative · Imaginative · Loving others</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-solid">View my work</a>
+      <a href="#contact" class="btn-line">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-r">
+    <div class="hero-r-bg"></div>
+    <div class="hero-deco">C</div>
+    <div class="hero-badge b1" id="badge1"><b>Curiosity</b></div>
+    <div class="hero-badge b2" id="badge2"><b>Imaginative</b></div>
+    <div class="hero-badge b3" id="badge3"><b>Critical</b></div>
+    <img class="hero-img" src="2026-05-31_23-17-39_Lumina_1.png" alt="Chi Dang"
+      onerror="this.style.display='none'">
+  </div>
+</div>
+
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about"><div class="inner">
+  <div class="sh"><span class="sn">01 —</span><h2 class="st">About Me</h2></div>
+  <div class="about-grid">
+    <div>
+      <p class="about-p">I'm a Business Analytics student at National Economics University, fascinated by the way people think, decide, and interact. At the intersection of data, economics, and human behavior, I build models that turn complexity into clarity.</p>
+      <p class="about-p">My long-term goal is to bring this analytical mindset into the games industry — making games more effective and more deeply engaging for real people.</p>
+      <p class="about-p">I believe data is only as meaningful as the human story behind it.</p>
+      <blockquote class="about-q">"Data is the map,<br>but human behavior<br>is the territory."</blockquote>
+    </div>
+    <div class="sk-wrap">
+      <div class="sk-g">
+        <div class="sk-label">Data & Analytics</div>
+        <div class="sks">
+          <span class="sk">SQL</span><span class="sk">Python</span>
+          <span class="sk">Power BI</span><span class="sk">Machine Learning</span>
+          <span class="sk">A/B Testing</span><span class="sk">Statistics</span>
+        </div>
+      </div>
+      <div class="sk-g">
+        <div class="sk-label">Tools</div>
+        <div class="sks">
+          <span class="sk o">Excel / MOS 365</span>
+          <span class="sk o">Spreadsheet Modeling</span>
+          <span class="sk o">Canva</span>
+        </div>
+      </div>
+      <div class="sk-g">
+        <div class="sk-label">Languages</div>
+        <div class="sks">
+          <span class="sk o">Vietnamese — Native</span>
+          <span class="sk o">English — IELTS 7.5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- QUOTE -->
+<div class="quote-sec"><div class="inner" style="text-align:center;">
+  <div class="quote-deco">"</div>
+  <p class="quote-q">"You must sweat every small stuff."</p>
+  <span class="quote-by">— Steven Bartlett</span>
+</div></div>
+
+<!-- EDUCATION -->
+<section class="sec" id="education"><div class="inner">
+  <div class="sh"><span class="sn">02 —</span><h2 class="st">Education &amp; Achievements</h2></div>
+  <div class="edu-layout">
+    <div class="edu-card">
+      <div class="edu-img-slot" style="height:130px;background:var(--bg2);border-radius:4px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--border);overflow:hidden;">
+        <span style="font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;">Add image here</span>
+      </div>
+      <div class="edu-yr">2022 — Present</div>
+      <h3 class="edu-school">National Economics University</h3>
+      <p class="edu-deg">Business Analytics — English Program</p>
+      <ul class="edu-pts">
+        <li>GPA: 3.88 / 4.0 (9.06 / 10)</li>
+        <li>5/7 Scholarships for Excellent Students (Top 10%)</li>
+      </ul>
+    </div>
+    <div class="edu-card">
+      <div class="edu-img-slot" style="height:130px;background:var(--bg2);border-radius:4px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--border);overflow:hidden;">
+        <span style="font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;">Add image here</span>
+      </div>
+      <div class="edu-yr">2019 — 2022</div>
+      <h3 class="edu-school">Thai Binh Specialized High School</h3>
+      <p class="edu-deg">Specialized Mathematics</p>
+      <ul class="edu-pts">
+        <li>Highest Specialized Maths Grade in Entrance Exam</li>
+        <li>Member of Maths Team — Vietnam Mathematical Olympiad</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ach-grid">
+    <div class="ach"><b>IELTS 7.5</b><span>English Proficiency</span></div>
+    <div class="ach"><b>MOS 365</b><span>Microsoft Office Specialist</span></div>
+    <div class="ach"><b>Co-founder</b><span>Tra Cha Company Limited</span></div>
+  </div>
+</section>
+<!-- PROJECTS -->
+<section class="sec sec-alt" id="projects"><div class="inner">
+  <div class="sh"><span class="sn">03 —</span><h2 class="st">Recent Projects</h2></div>
+  <div class="proj-grid">
+
+    <!-- 1: Pizza Hut -->
+    <div class="proj-card">
+      <div class="proj-ill" style="background:#FFF5EE;">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- big pie -->
+          <circle cx="250" cy="115" r="88" fill="#F0D5C4"/>
+          <!-- slices -->
+          <path d="M250 115 L250 27 A88 88 0 0 1 326 61 Z" fill="#D4956A"/>
+          <path d="M250 115 L326 61 A88 88 0 0 1 338 115 Z" fill="#E8B896"/>
+          <path d="M250 115 L338 115 A88 88 0 0 1 302 189 Z" fill="#C4622D" opacity="0.85"/>
+          <path d="M250 115 L302 189 A88 88 0 0 1 198 189 Z" fill="#D4956A"/>
+          <path d="M250 115 L198 189 A88 88 0 0 1 162 115 Z" fill="#E8B896"/>
+          <path d="M250 115 L162 115 A88 88 0 0 1 250 27 Z" fill="#C4622D" opacity="0.65"/>
+          <!-- inner -->
+          <circle cx="250" cy="115" r="32" fill="#FFF5EE"/>
+          <!-- lines -->
+          <line x1="250" y1="27" x2="250" y2="203" stroke="#FFF5EE" stroke-width="1.5"/>
+          <line x1="174" y1="68" x2="326" y2="162" stroke="#FFF5EE" stroke-width="1.5"/>
+          <line x1="174" y1="162" x2="326" y2="68" stroke="#FFF5EE" stroke-width="1.5"/>
+          <!-- legend bars -->
+          <rect x="46" y="68" width="10" height="32" rx="2" fill="#C4622D" opacity="0.7"/>
+          <rect x="60" y="52" width="10" height="48" rx="2" fill="#C4622D"/>
+          <rect x="74" y="60" width="10" height="40" rx="2" fill="#C4622D" opacity="0.6"/>
+          <text x="52" y="115" font-family="Instrument Sans,sans-serif" font-size="9" fill="#A04E22" text-anchor="middle" font-weight="600">VIP</text>
+          <!-- 583K label -->
+          <text x="250" y="120" font-family="Playfair Display,serif" font-size="16" fill="#B5451B" text-anchor="middle" font-weight="700">583K</text>
+          <text x="250" y="132" font-family="Instrument Sans,sans-serif" font-size="8" fill="#A04E22" text-anchor="middle" font-weight="600" letter-spacing="1">CUSTOMERS</text>
+          <!-- right stats -->
+          <text x="418" y="75" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9A8B82" font-weight="600" letter-spacing="1">RFM</text>
+          <rect x="410" y="80" width="55" height="6" rx="3" fill="#E8B896"/>
+          <rect x="410" y="80" width="38" height="6" rx="3" fill="#C4622D"/>
+          <text x="418" y="102" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9A8B82" font-weight="600" letter-spacing="1">SQL</text>
+          <rect x="410" y="107" width="55" height="6" rx="3" fill="#E8B896"/>
+          <rect x="410" y="107" width="48" height="6" rx="3" fill="#C4622D"/>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-date">January 2026</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <h3 class="proj-name">Pizza Hut Sales Analysis</h3>
+        <p class="proj-desc">Built an RFM segmentation model to classify 583K customers across VIP, Loyal, At-Risk, and Churned segments. Uncovered a declining revenue trend and proposed recovery strategies with a Power BI dashboard.</p>
+        <div class="proj-tags">
+          <span class="ptag">SQL</span><span class="ptag">Power BI</span>
+          <span class="ptag">RFM Model</span><span class="ptag">Customer Analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2: Healthcare ML -->
+    <div class="proj-card">
+      <div class="proj-ill" style="background:#EDF4F2;">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- axes -->
+          <line x1="70" y1="185" x2="440" y2="185" stroke="#DDD5CA" stroke-width="1"/>
+          <line x1="70" y1="25" x2="70" y2="185" stroke="#DDD5CA" stroke-width="1"/>
+          <!-- regression band -->
+          <path d="M 80,172 Q 160,145 240,108 Q 320,70 420,40 L 420,58 Q 320,88 240,124 Q 160,160 80,187 Z" fill="#3D6B5E" opacity="0.08"/>
+          <!-- regression line -->
+          <line x1="80" y1="178" x2="420" y2="35" stroke="#3D6B5E" stroke-width="2" stroke-dasharray="6,3" opacity="0.7"/>
+          <!-- dots -->
+          <circle cx="95" cy="168" r="5" fill="#B5451B" opacity="0.7"/>
+          <circle cx="128" cy="155" r="6" fill="#B5451B" opacity="0.8"/>
+          <circle cx="162" cy="138" r="5" fill="#B5451B" opacity="0.7"/>
+          <circle cx="195" cy="118" r="7" fill="#B5451B" opacity="0.9"/>
+          <circle cx="232" cy="105" r="5" fill="#B5451B" opacity="0.7"/>
+          <circle cx="268" cy="88" r="6" fill="#B5451B" opacity="0.8"/>
+          <circle cx="305" cy="72" r="5" fill="#B5451B" opacity="0.7"/>
+          <circle cx="345" cy="58" r="7" fill="#B5451B"/>
+          <circle cx="388" cy="44" r="5" fill="#B5451B" opacity="0.8"/>
+          <!-- feature importance bars (top-left mini chart) -->
+          <text x="85" y="42" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" font-weight="600" letter-spacing="1">FEATURE IMPORTANCE</text>
+          <rect x="85" y="47" width="42" height="7" rx="2" fill="#C4622D"/>
+          <text x="132" y="54" font-family="Instrument Sans,sans-serif" font-size="7.5" fill="#9A8B82">Smoking</text>
+          <rect x="85" y="58" width="30" height="7" rx="2" fill="#C4622D" opacity="0.7"/>
+          <text x="120" y="65" font-family="Instrument Sans,sans-serif" font-size="7.5" fill="#9A8B82">BMI</text>
+          <rect x="85" y="69" width="18" height="7" rx="2" fill="#C4622D" opacity="0.5"/>
+          <text x="108" y="76" font-family="Instrument Sans,sans-serif" font-size="7.5" fill="#9A8B82">Age</text>
+          <!-- R² label -->
+          <rect x="355" y="155" width="72" height="22" rx="3" fill="#3D6B5E" opacity="0.12"/>
+          <text x="391" y="170" font-family="Playfair Display,serif" font-size="11" fill="#3D6B5E" text-anchor="middle" font-weight="700">R² 0.87</text>
+          <!-- axis labels -->
+          <text x="250" y="200" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">BEHAVIORAL RISK FACTORS</text>
+          <text x="40" y="110" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1" transform="rotate(-90,40,110)">COST ($)</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-date">March 2026</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <h3 class="proj-name">ML: Predict Healthcare Insurance Cost</h3>
+        <p class="proj-desc">Identified key cost drivers using Feature Importance in Gradient Boosting. Ran what-if behavioral scenarios to quantify potential savings. Compared Random Forest, Gradient Boosting, and Linear Regression.</p>
+        <div class="proj-tags">
+          <span class="ptag">Python</span><span class="ptag">Gradient Boosting</span>
+          <span class="ptag">Random Forest</span><span class="ptag">Feature Engineering</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3: A/B Testing -->
+    <div class="proj-card">
+      <div class="proj-ill" style="background:#F5F0FB;">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- axis -->
+          <line x1="55" y1="175" x2="455" y2="175" stroke="#DDD5CA" stroke-width="1"/>
+          <!-- Group A distribution -->
+          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70 L270,175Z" fill="#B5451B" opacity="0.15"/>
+          <path d="M55,175 C80,175 100,172 120,160 C140,148 155,118 170,95 C185,70 195,52 210,48 C225,44 235,44 250,48 C255,50 260,55 270,70" fill="none" stroke="#B5451B" stroke-width="2.5"/>
+          <!-- Group B distribution (shifted right) -->
+          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175Z" fill="#3D6B5E" opacity="0.12"/>
+          <path d="M160,175 C185,175 210,172 230,160 C250,145 265,115 280,90 C295,65 305,48 320,44 C335,40 345,40 360,44 C370,48 385,65 400,90 C415,115 435,150 455,175" fill="none" stroke="#3D6B5E" stroke-width="2.5"/>
+          <!-- vertical means -->
+          <line x1="210" y1="48" x2="210" y2="175" stroke="#B5451B" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+          <line x1="320" y1="44" x2="320" y2="175" stroke="#3D6B5E" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+          <!-- labels -->
+          <rect x="60" y="28" width="32" height="18" rx="9" fill="#B5451B" opacity="0.15"/>
+          <text x="76" y="41" font-family="Instrument Sans,sans-serif" font-size="10" fill="#B5451B" font-weight="700" text-anchor="middle">A</text>
+          <rect x="328" y="18" width="32" height="18" rx="9" fill="#3D6B5E" opacity="0.15"/>
+          <text x="344" y="31" font-family="Instrument Sans,sans-serif" font-size="10" fill="#3D6B5E" font-weight="700" text-anchor="middle">B</text>
+          <text x="205" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#B5451B" text-anchor="middle" font-weight="600">Gate 30</text>
+          <text x="325" y="195" font-family="Instrument Sans,sans-serif" font-size="8" fill="#3D6B5E" text-anchor="middle" font-weight="600">Gate 40</text>
+          <!-- CI bracket -->
+          <line x1="175" y1="208" x2="375" y2="208" stroke="#9A8B82" stroke-width="1.5"/>
+          <line x1="175" y1="203" x2="175" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
+          <line x1="375" y1="203" x2="375" y2="213" stroke="#9A8B82" stroke-width="1.5"/>
+          <text x="275" y="218" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">95% CONFIDENCE INTERVAL</text>
+          <!-- n label -->
+          <text x="400" y="42" font-family="Instrument Sans,sans-serif" font-size="8" fill="#9A8B82" font-weight="500">n = 90,189</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-date">May 2026</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <h3 class="proj-name">A/B Testing — Cookie Cat</h3>
+        <p class="proj-desc">Analyzed 90,189 users to test how gate placement (level 30 vs 40) affects retention in a real mobile game. Applied Chi-Square, Mann-Whitney U, and Bootstrap Resampling with 5,000 iterations at 95% CI.</p>
+        <div class="proj-tags">
+          <span class="ptag">Python</span><span class="ptag">A/B Testing</span>
+          <span class="ptag">Bootstrap</span><span class="ptag">Statistics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4: Spreadsheet WIP -->
+    <div class="proj-card" style="background:var(--rust-pale);">
+      <div class="proj-ill" style="background:#F5E8E2;">
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- decision tree -->
+          <!-- root -->
+          <rect x="216" y="22" width="68" height="32" rx="4" fill="#B5451B" opacity="0.2" stroke="#B5451B" stroke-width="1.5"/>
+          <text x="250" y="43" font-family="Playfair Display,serif" font-size="13" fill="#B5451B" text-anchor="middle" font-weight="700" font-style="italic">Decide</text>
+          <!-- branches from root -->
+          <line x1="230" y1="54" x2="150" y2="94" stroke="#B5451B" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+          <line x1="270" y1="54" x2="350" y2="94" stroke="#B5451B" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+          <!-- left node -->
+          <rect x="110" y="94" width="80" height="28" rx="4" fill="#F0D5C4" stroke="#C4622D" stroke-width="1"/>
+          <text x="150" y="113" font-family="Instrument Sans,sans-serif" font-size="10" fill="#A04E22" text-anchor="middle" font-weight="600">Option A</text>
+          <!-- right node -->
+          <rect x="310" y="94" width="80" height="28" rx="4" fill="#F0D5C4" stroke="#C4622D" stroke-width="1"/>
+          <text x="350" y="113" font-family="Instrument Sans,sans-serif" font-size="10" fill="#A04E22" text-anchor="middle" font-weight="600">Option B</text>
+          <!-- sub-branches -->
+          <line x1="138" y1="122" x2="100" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="162" y1="122" x2="198" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="330" y1="122" x2="298" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <line x1="368" y1="122" x2="402" y2="158" stroke="#C4622D" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+          <!-- leaf nodes -->
+          <circle cx="100" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
+          <circle cx="198" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
+          <circle cx="298" cy="165" r="14" fill="#C4622D" opacity="0.4"/>
+          <circle cx="402" cy="165" r="14" fill="#E8B896" opacity="0.7"/>
+          <!-- leaf values -->
+          <text x="100" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+12</text>
+          <text x="198" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+8</text>
+          <text x="298" y="169" font-family="Playfair Display,serif" font-size="9" fill="#7A1F00" text-anchor="middle">+21</text>
+          <text x="402" y="169" font-family="Playfair Display,serif" font-size="9" fill="#A04E22" text-anchor="middle">+5</text>
+          <!-- bottom label -->
+          <text x="250" y="205" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9A8B82" text-anchor="middle" font-weight="600" letter-spacing="1">SCENARIO ANALYSIS · DECISION MODELING</text>
+          <!-- wip badge visual -->
+          <text x="432" y="38" font-family="Instrument Sans,sans-serif" font-size="8" fill="#C8962A" font-weight="700" letter-spacing="1">WIP</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta">
+          <span class="proj-date">2026</span>
+          <span class="proj-status wip">In progress</span>
+        </div>
+        <h3 class="proj-name">Spreadsheet Modeling: Decision Making</h3>
+        <p class="proj-desc">Building a structured decision-making model using advanced spreadsheet techniques, scenario analysis, and quantitative frameworks to support data-driven business decisions.</p>
+        <div class="proj-tags">
+          <span class="ptag">Excel</span><span class="ptag">Scenario Analysis</span>
+          <span class="ptag">Decision Science</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- EXPERIENCE (dark section) -->
+<section class="sec sec-dark"><div class="inner">
+  <div class="sh"><span class="sn">04 —</span><h2 class="st">Experience</h2></div>
+  <div class="exp-rows">
+    <div class="exp-row">
+      <div>
+        <div class="exp-co">MCNA Technology</div>
+        <div class="exp-yr" style="margin:0.25rem 0 0.4rem;">Apr – Jun 2026</div>
+        <div class="exp-role">Data Analyst Intern</div>
+      </div>
+      <ul class="exp-ul">
+        <li>Collected daily stock data from HOSE &amp; HNX to generate automated reports</li>
+        <li>Collaborated with dev teams to build a Learning Management System</li>
+      </ul>
+    </div>
+    <div class="exp-row">
+      <div>
+        <div class="exp-co">Tra Cha Co., Ltd.</div>
+        <div class="exp-yr" style="margin:0.25rem 0 0.4rem;">2025 – Jan 2026</div>
+        <div class="exp-role">Co-founder · Accounting Executive</div>
+      </div>
+      <ul class="exp-ul">
+        <li>Maintained bookkeeping and prepared financial summaries</li>
+        <li>Managed daily records: revenues, expenses, and cash flow</li>
+        <li>Conducted cost analysis to support pricing decisions</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOBBIES -->
+<section class="sec sec-alt"><div class="inner">
+  <div class="sh"><span class="sn">05 —</span><h2 class="st">Beyond the Data</h2></div>
+  <div class="hob-grid">
+    <div class="hob">
+      <div class="hob-num">01</div>
+      <div class="hob-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6C4 4.9 4.9 4 6 4H14C15.1 4 16 4.9 16 6V26C16 26 13 24 10 24C7 24 4 26 4 26V6Z" stroke="#2A8A8A" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M16 6C16 4.9 16.9 4 18 4H26C27.1 4 28 4.9 28 6V26C28 26 25 24 22 24C19 24 16 26 16 26V6Z" stroke="#2A8A8A" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="8" y1="10" x2="12" y2="10" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="8" y1="14" x2="12" y2="14" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="20" y1="10" x2="24" y2="10" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="20" y1="14" x2="24" y2="14" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="hob-n">Books</h3>
+      <p class="hob-d">From behavioral economics to philosophy — reading is how I collect different lenses to see the world differently.</p>
+    </div>
+    <div class="hob">
+      <div class="hob-num">02</div>
+      <div class="hob-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 24L10 16L15 20L21 11L28 8" stroke="#2A8A8A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="28" cy="8" r="2" stroke="#2A8A8A" stroke-width="1.5"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="4" y1="4" x2="4" y2="28" stroke="#2A8A8A" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="hob-n">Economics</h3>
+      <p class="hob-d">Fascinated by how incentives shape behavior at every scale — from personal decisions to entire markets.</p>
+    </div>
+    <div class="hob">
+      <div class="hob-num">03</div>
+      <div class="hob-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="#2A8A8A" stroke-width="1.5"/>
+          <circle cx="10" cy="12" r="2.5" stroke="#2A8A8A" stroke-width="1.5"/>
+          <circle cx="22" cy="12" r="2.5" stroke="#2A8A8A" stroke-width="1.5"/>
+          <path d="M10 20C10 20 12 23 16 23C20 23 22 20 22 20" stroke="#2A8A8A" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="10" y1="12" x2="22" y2="12" stroke="#2A8A8A" stroke-width="1" stroke-dasharray="2,2"/>
+        </svg>
+      </div>
+      <h3 class="hob-n">Game Theory</h3>
+      <p class="hob-d">The study of strategic decisions and interaction — my favorite framework for understanding why people do what they do.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact"><div class="inner">
+  <div class="sh"><span class="sn">06 —</span><h2 class="st">Let's Connect</h2></div>
+  <div class="contact-grid">
+    <div>
+      <div class="open-pill">Open to opportunities</div>
+      <h2 class="contact-h">Got a project<br><em>in mind?</em></h2>
+      <p class="contact-sub">Always open to interesting conversations, collaborations, or new opportunities in data analytics and the games industry. Based in Hanoi, Vietnam.</p>
+      <a href="mailto:chidang103204@gmail.com" class="btn-solid">Send a message →</a>
+    </div>
+    <div class="clinks">
+      <a href="mailto:chidang103204@gmail.com" class="cl">
+        <div><span class="cl-top">Email</span><span class="cl-val">chidang103204@gmail.com</span></div>
+        <span class="cl-arr">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/chi-đặng-quỳnh-9a199a254" target="_blank" class="cl">
+        <div><span class="cl-top">LinkedIn</span><span class="cl-val">Chi Đặng Quỳnh</span></div>
+        <span class="cl-arr">↗</span>
+      </a>
+      <a href="tel:+84867621933" class="cl">
+        <div><span class="cl-top">Phone</span><span class="cl-val">+84 867 621 933</span></div>
+        <span class="cl-arr">↗</span>
+      </a>
+      <div class="cl" style="cursor:default;">
+        <div><span class="cl-top">Location</span><span class="cl-val">Hanoi, Vietnam</span></div>
+        <span class="cl-arr" style="font-size:0.9rem;">📍</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="inner" style="display:flex;align-items:center;justify-content:space-between;">
+  <span class="f-brand" style="color:#E8F8F8;">Chi Dang</span>
+  <span class="f-motto">Creative · Imaginative · Loving others</span>
+  <span class="f-copy" style="color:#5A9A98;">© 2026 Chi Dang</span>
+</div></footer>
+
+</body>
+</html>
