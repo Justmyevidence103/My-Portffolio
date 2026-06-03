@@ -112,12 +112,15 @@ nav{
 .btn-line::after{content:'→';}
 
 /* right */
-.hero-r{
+.orbit-scene{
   width:300px;height:420px;flex-shrink:0;
+  position:relative;
+}
+.hero-r{
+  position:absolute;inset:0;
   background:linear-gradient(160deg,#C8F5F0 0%,#A8EAE4 100%);
   display:flex;align-items:flex-end;justify-content:center;
   overflow:hidden;border-radius:8px;
-  position:relative;
 }
 .hero-r-bg{
   position:absolute;inset:0;
@@ -140,20 +143,38 @@ nav{
   height:88%;border-radius:4px 4px 0 0;display:block;
 }
 .hero-badge{
-  position:absolute;background:rgba(255,255,255,0.92);
-  border:1px solid #EAD8C0;border-radius:100px;
-  padding:0.45rem 1.1rem !important;
-  padding:0.8rem 1.1rem;z-index:3;
-  box-shadow:0 8px 32px rgba(28,22,18,0.1);
+  background:rgba(255,255,255,0.93);
+  border:1px solid rgba(42,138,138,0.25);border-radius:100px;
+  padding:0.45rem 1.2rem;z-index:10;
+  box-shadow:0 4px 20px rgba(28,22,18,0.1);
+  white-space:nowrap;
 }
 .hero-badge b{
-  display:block;font-family:var(--display);font-size:1.05rem;
+  display:block;font-family:var(--display);font-size:0.9rem;
   font-weight:600;color:#2A8A8A;line-height:1;
 }
-.hero-badge small{font-size:0.68rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);}
-.b1{top:8%;right:-12%;}
-.b2{bottom:15%;left:-12%;}
-.b3{top:45%;right:-12%;}
+/* orbit system */
+.orbit-arm{
+  position:absolute;top:50%;left:50%;
+  width:0;height:0;
+}
+.orbit-arm .hero-badge{
+  position:absolute;
+}
+#arm1{animation:orbitSpin 10s linear infinite 0s;}
+#arm2{animation:orbitSpin 10s linear infinite -3.33s;}
+#arm3{animation:orbitSpin 10s linear infinite -6.66s;}
+#arm1 .hero-badge{animation:orbitCounter 10s linear infinite 0s;}
+#arm2 .hero-badge{animation:orbitCounter 10s linear infinite -3.33s;}
+#arm3 .hero-badge{animation:orbitCounter 10s linear infinite -6.66s;}
+@keyframes orbitSpin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+@keyframes orbitCounter{
+  from{transform:translateX(170px) translateY(-50%) rotate(0deg);}
+  to{transform:translateX(170px) translateY(-50%) rotate(-360deg);}
+}
 
 
 /* ── MARQUEE ── */
@@ -408,7 +429,8 @@ footer{
   nav{padding:0 1.5rem;}
   .hero{grid-template-columns:1fr;min-height:auto;}
   .hero-l{padding:3rem 1.5rem;}
-  .hero-r{height:70vw;min-height:280px;}
+  .orbit-scene{height:70vw;min-height:280px;}
+  .hero-r{height:100%;min-height:unset;}
   .sec{padding:4rem 1.5rem;}
   .about-grid,.contact-grid,.edu-layout{grid-template-columns:1fr;gap:2.5rem;}
   .proj-grid{grid-template-columns:1fr;gap:1px;}
@@ -417,27 +439,6 @@ footer{
   footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
 }
 
-#badge1{animation:drift1 6s ease-in-out infinite;}
-#badge2{animation:drift2 7s ease-in-out infinite 0.8s;}
-#badge3{animation:drift3 5.5s ease-in-out infinite 1.6s;}
-@keyframes drift1{
-  0%{transform:translate(0,0) rotate(-1deg);}
-  30%{transform:translate(4px,-10px) rotate(1deg);}
-  60%{transform:translate(-3px,-5px) rotate(-0.5deg);}
-  100%{transform:translate(0,0) rotate(-1deg);}
-}
-@keyframes drift2{
-  0%{transform:translate(0,0) rotate(1deg);}
-  25%{transform:translate(-5px,-8px) rotate(-1.5deg);}
-  70%{transform:translate(3px,-12px) rotate(1deg);}
-  100%{transform:translate(0,0) rotate(1deg);}
-}
-@keyframes drift3{
-  0%{transform:translate(0,0) rotate(-0.5deg);}
-  40%{transform:translate(3px,-7px) rotate(1.5deg);}
-  75%{transform:translate(-4px,-11px) rotate(-1deg);}
-  100%{transform:translate(0,0) rotate(-0.5deg);}
-}
 </style>
 </head>
 <body>
@@ -469,14 +470,15 @@ footer{
     </div>
   </div>
 
-  <div class="hero-r">
-    <div class="hero-r-bg"></div>
-    <div class="hero-deco">C</div>
-    <div class="hero-badge b1" id="badge1"><b>Curiosity</b></div>
-    <div class="hero-badge b2" id="badge2"><b>Imaginative</b></div>
-    <div class="hero-badge b3" id="badge3"><b>Critical</b></div>
-    <img class="hero-img" src="2026-05-31_23-17-39_Lumina_1.png" alt="Chi Dang"
-      onerror="this.style.display='none'">
+  <div class="orbit-scene">
+    <div class="hero-r">
+      <div class="hero-r-bg"></div>
+      <div class="hero-deco">C</div>
+      <img class="hero-img" src="Me.png" alt="Chi Dang">
+    </div>
+    <div class="orbit-arm" id="arm1"><div class="hero-badge"><b>Curiosity</b></div></div>
+    <div class="orbit-arm" id="arm2"><div class="hero-badge"><b>Humanity</b></div></div>
+    <div class="orbit-arm" id="arm3"><div class="hero-badge"><b>Integrity</b></div></div>
   </div>
 </div>
 
@@ -490,7 +492,7 @@ footer{
       <p class="about-p">I'm a Business Analytics student at National Economics University, fascinated by the way people think, decide, and interact. At the intersection of data, economics, and human behavior, I build models that turn complexity into clarity.</p>
       <p class="about-p">My long-term goal is to bring this analytical mindset into the games industry — making games more effective and more deeply engaging for real people.</p>
       <p class="about-p">I believe data is only as meaningful as the human story behind it.</p>
-      <blockquote class="about-q">"Data is the map,<br>but human behavior<br>is the territory."</blockquote>
+      <blockquote class="about-q">"Sonat Studio, I am waiting for your call!!!!"</blockquote>
     </div>
     <div class="sk-wrap">
       <div class="sk-g">
