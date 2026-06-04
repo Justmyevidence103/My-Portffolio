@@ -198,140 +198,8 @@ footer{background:#2A8A8A;padding:2rem 0;display:flex;align-items:center;justify
     <div class="proj-breadcrumb">Case Study</div>
     <h1 class="proj-title">Cookie Cats<br>A/B Testing</h1>
     <p class="proj-subtitle">Ran a full statistical analysis on a <strong>90,000-user mobile game experiment</strong> — testing whether moving the progression gate from level 30 to level 40 improves player retention, using chi-square tests, Mann-Whitney U, and bootstrap confidence intervals.</p>
-    <div class="proj-meta-row">
-      <div class="meta-item">
-        <div class="meta-label">Domain</div>
-        <div class="meta-val">Mobile Gaming · Behavioral Analytics</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Methods</div>
-        <div class="meta-val">Chi-Square · Bootstrap · Mann-Whitney U</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Tools</div>
-        <div class="tag-row">
-          <span class="ptag">Python</span>
-          <span class="ptag">Pandas</span>
-          <span class="ptag">SciPy</span>
-          <span class="ptag">Matplotlib</span>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
-<!-- KEY NUMBERS -->
-<section class="sec">
-  <div class="inner">
-    <div class="sh"><span class="sn">01</span><h2 class="st">Experiment at a Glance</h2></div>
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-num">90,189</div>
-        <div class="stat-desc">Total users — well-balanced random assignment</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">−4.3%</div>
-        <div class="stat-desc">Relative drop in 7-day retention for Gate 40</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">p = 0.0016</div>
-        <div class="stat-desc">7-day retention result — statistically significant</div>
-      </div>
-    </div>
-    <p class="body-p">Cookie Cats is a mobile puzzle game where players hit a timed gate at a set level — forcing a wait before they can continue. The experiment tested whether shifting the gate from <strong>level 30</strong> (control) to <strong>level 40</strong> (treatment) would improve 1-day retention, 7-day retention, and overall game rounds played.</p>
-  </div>
-</section>
-
-<!-- CHARTS -->
-<section class="sec sec-alt">
-  <div class="inner">
-    <div class="sh"><span class="sn">02</span><h2 class="st">Analysis Dashboard</h2></div>
-    <img src="Cookie_cat_ABTesting/output/dashboard.png" alt="A/B Test Analysis Dashboard" style="width:100%;border:1px solid var(--border);border-radius:3px;display:block;margin-bottom:1.25rem;">
-    <img src="Cookie_cat_ABTesting/output/retention_funnel.png" alt="Retention Funnel Comparison" style="width:100%;border:1px solid var(--border);border-radius:3px;display:block;">
-  </div>
-</section>
-
-<!-- RESULTS TABLE -->
-<section class="sec">
-  <div class="inner">
-    <div class="sh"><span class="sn">03</span><h2 class="st">Results</h2></div>
-    <table class="ab-table">
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Gate 30 (Control)</th>
-          <th>Gate 40 (Treatment)</th>
-          <th>Lift</th>
-          <th>Significance</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1-Day Retention</td>
-          <td class="winner">44.82%</td>
-          <td class="loser">44.23%</td>
-          <td>−1.32%</td>
-          <td><span class="badge ns">Not Sig. p=0.075</span></td>
-        </tr>
-        <tr>
-          <td><strong>7-Day Retention</strong></td>
-          <td class="winner"><strong>19.02%</strong></td>
-          <td class="loser">18.20%</td>
-          <td><strong>−4.31%</strong></td>
-          <td><span class="badge sig">Significant p=0.0016</span></td>
-        </tr>
-        <tr>
-          <td>Avg Game Rounds</td>
-          <td>52.5</td>
-          <td>51.3</td>
-          <td>—</td>
-          <td><span class="badge ns">Not Sig.</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="body-p">Bootstrap analysis (5,000 iterations) confirmed the 7-day result: the 95% confidence interval for the difference [−1.30 pp, −0.32 pp] excludes zero, ruling out chance. Game rounds were similar across groups, indicating the gate position does not meaningfully change how much players engage before hitting the gate.</p>
-  </div>
-</section>
-
-<!-- INSIGHTS -->
-<section class="sec sec-alt">
-  <div class="inner">
-    <div class="sh"><span class="sn">04</span><h2 class="st">Key Insights</h2></div>
-    <div class="insight-grid">
-      <div class="insight-card">
-        <div class="insight-label">Hedonic Adaptation</div>
-        <div class="insight-text">Players who reach the gate earlier (level 30) feel a stronger urge to return after the wait. Those who progress further (level 40) may feel more satisfied — and less motivated to come back.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">7-Day Retention Matters Most</div>
-        <div class="insight-text">Seven-day retention is the strongest predictor of long-term monetisation. A −4.3% relative drop at Gate 40 directly threatens revenue, making this the decisive metric.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">1-Day Effect is Negligible</div>
-        <div class="insight-text">While Gate 30 edges Gate 40 on day-1 retention, the difference is not statistically significant (p=0.075) and Cohen's h ≈ −0.012 shows essentially no practical effect.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Engagement is Unaffected</div>
-        <div class="insight-text">Median rounds played (17 vs 16) are nearly identical across groups. The gate position changes retention behaviour but not in-session engagement volume.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VERDICT -->
-<section class="sec">
-  <div class="inner">
-    <div class="sh"><span class="sn">05</span><h2 class="st">Recommendation</h2></div>
-    <div class="verdict">
-      <div class="verdict-icon">✅</div>
-      <div>
-        <div class="verdict-h">Keep Gate 30 — do not ship Gate 40</div>
-        <div class="verdict-b">Gate 30 wins on the metric that matters most: 7-day retention, with statistical significance confirmed by both chi-square (p=0.0016) and bootstrap CI. Moving the gate later improves nothing and meaningfully hurts long-term player return rates.</div>
-      </div>
-    </div>
-    <p class="body-p">Next steps: segment results by platform (iOS / Android), analyse in-app purchase data alongside retention, and consider testing Gate 50 vs Gate 30 to further understand the psychological sweet spot.</p>
-  </div>
-</section>
 
 <!-- GITHUB -->
 <section class="sec sec-alt">
@@ -342,7 +210,7 @@ footer{background:#2A8A8A;padding:2rem 0;display:flex;align-items:center;justify
         <div class="cta-sub">Python script, dataset, and output charts — all on GitHub.</div>
       </div>
       <div class="cta-actions">
-        <a href="https://github.com/ChiDang/Cookie_cat_ABTesting" target="_blank" class="btn-white">View on GitHub ↗</a>
+        <a href="https://github.com/Justmyevidence103/Cookie_cat_ABTesting" target="_blank" class="btn-white">View on GitHub ↗</a>
       </div>
     </div>
   </div>
